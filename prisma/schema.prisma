@@ -1,11 +1,84 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Marque {
+  id    String  @id @default(uuid())
+  nom   String
+  Phone Phone[]
+}
+
+model TypeTelephone {
+  id    String  @id @default(uuid())
+  nom   String
+  Phone Phone[]
+}
+
+model SysOp {
+  id    String  @id @default(uuid())
+  nom   String
+  Phone Phone[]
+}
+
+model GenerateurHautDebit {
+  id    String  @id @default(uuid())
+  nom   String
+  Phone Phone[]
+}
+
+model Phone {
+  id              String              @id @default(uuid())
+  nom             String
+  idMarque        String
+  extensionSD     Boolean             @default(false)
+  typeID          String
+  camRes          Decimal
+  ram             Decimal
+  stockage        Decimal
+  audio           Boolean             @default(true)
+  geolocalisation Boolean             @default(true)
+  osId            String
+  osVersion       Int
+  foldable        Boolean             @default(false)
+  wifi            Boolean             @default(false)
+  hotspot         Boolean             @default(false)
+  tailleEcran     Int
+  prix            Decimal
+  supportSD       Boolean             @default(true)
+  memoire         Decimal
+  cpuCoeur        Int
+  ghdId           String
+  ghd             GenerateurHautDebit @relation(fields: [ghdId], references: [id])
+  marque          Marque              @relation(fields: [idMarque], references: [id])
+  os              SysOp               @relation(fields: [osId], references: [id])
+  typeTelephone   TypeTelephone       @relation(fields: [typeID], references: [id])
+}
+
+view PhoneInfo {
+  idPhone         String  @unique
+  nom             String
+  marque          String
+  extensionSD     Boolean
+  camRes          Decimal
+  ram             Decimal
+  stockage        Decimal
+  audio           Boolean
+  geolocalisation Boolean
+  os              String
+  osVersion       Int
+  foldable        Boolean
+  wifi            Boolean
+  hotspot         Boolean
+  tailleEcran     Int
+  prix            Decimal
+  supportSD       Boolean
+  memoire         Decimal
+  cpuCoeur        Int
+  ghd             String
 }
