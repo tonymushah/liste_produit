@@ -13,7 +13,13 @@ export class AdjectifedString {
         } else {
             this.adjectif = adjectifs[0];
         }
-        this.column = extract_value(input);
+        const column = extract_value(input);
+        if (column.length == 0) {
+            throw new Error("Columns should be excpeted");
+        } else {
+            this.column = column;
+        }
+
     }
     public is_meilleur() {
         return this.adjectif == Adjectifs.Meilleur;

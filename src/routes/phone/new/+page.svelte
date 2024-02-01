@@ -65,7 +65,8 @@
 		<Checkbox checked name="extensionSD" label="Extension SD" />
 		<NumberInput name="tailleEcran" required label="Taille Ecran" />
 		<NumberInput name="prix" required label="Prix" />
-		<NumberInput name="memoire" required label="Stockage interne" />
+		<NumberInput name="stockage" required label="Stockage interne" />
+		<NumberInput name="memoire" required label="Memoire interne" />
 		<NumberInput name="cpuCoeur" required label="Coeur CPU" />
 		<Button type="submit">Ajouter</Button>
 	</Flex>

@@ -82,3 +82,10 @@ view PhoneInfo {
   cpuCoeur        Int
   ghd             String
 }
+
+model Alim {
+  id      String  @id @default(uuid())
+  nom     String
+  qualite Int
+  prix    Decimal
+}

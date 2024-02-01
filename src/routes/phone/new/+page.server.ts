@@ -160,7 +160,7 @@ export const actions = {
                 error(400, "invalid data `typeTelephone`")
             }
         }
-        prisma.phone.create({
+        await prisma.phone.create({
             data: {
                 nom: _nom(),
                 extensionSD: _extensionSD(),
